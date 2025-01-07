@@ -191,7 +191,7 @@ def get_director(nombre_director: str):
         "peliculas": movies_list
     }
  
-"""""    
+    
 #SISTEMA DE RECOMENDACION
 dataset = pd.read_csv("./dataset_modelo.csv")
 # Asegurarnos de que las columnas estén correctamente tipificadas
@@ -199,9 +199,14 @@ dataset['vote_average'] = pd.to_numeric(dataset['vote_average'], errors='coerce'
 dataset['vote_count'] = pd.to_numeric(dataset['vote_count'], errors='coerce')
 dataset['popularity'] = pd.to_numeric(dataset['popularity'], errors='coerce')
 
+#Convertir tipos de datos
+dataset['vote_average'] = dataset['vote_average'].astype('float32')
+dataset['vote_count'] = dataset['vote_count'].astype('int32')
+dataset['popularity'] = dataset['popularity'].astype('float32')
+
 # Criterios de filtro
-vote_threshold = 50  # Mínimo de 50 votos
-popularity_threshold = dataset['popularity'].quantile(0.8)  # Percentil 80 de popularidad
+vote_threshold = 100  # Mínimo de 100 votos
+popularity_threshold = dataset['popularity'].quantile(0.9)  # Percentil 90 de popularidad
 
 # Filtrar el dataset
 filtered_movies = dataset[(dataset['vote_count'] >= vote_threshold) & (dataset['popularity'] >= popularity_threshold)].reset_index(drop=True)
@@ -249,4 +254,3 @@ def get_recommendations(title, cosine_sim=cosine_sim):
 def recomendacion(titulo: str):
     recomendaciones = get_recommendations(titulo)
     return {"recomendaciones": recomendaciones}
-    """""
