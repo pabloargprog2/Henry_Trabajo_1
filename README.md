@@ -1,14 +1,22 @@
 Descripción
+
 Este proyecto tiene como objetivo cumplir con el primer trabajo practico individual en Henry, en la carrera Data Science. El mismo consiste en realizar un MVP( Minimum Viable Product) sosbre un sistema de recomendacion de peliculas en una start-up que provee servicios de agregación de plataformas de streaming.
 
 
 Instalación y Requisitos
-Todo presente en el archivo: requirements.txt. Pero principlamente es:
+Todo presente en el archivo: requirements.txt. 
+Pero principlamente es:
+
 fastapi
+
 uvicorn
+
 pandas
+
 scikit-learn
+
 numpy
+
 python-multipart
 
 
