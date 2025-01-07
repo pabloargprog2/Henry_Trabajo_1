@@ -190,7 +190,8 @@ def get_director(nombre_director: str):
         "retorno_total": total_return,
         "peliculas": movies_list
     }
-    
+ 
+"""""    
 #SISTEMA DE RECOMENDACION
 dataset = pd.read_csv("./dataset_modelo.csv")
 # Asegurarnos de que las columnas estén correctamente tipificadas
@@ -248,3 +249,4 @@ def get_recommendations(title, cosine_sim=cosine_sim):
 def recomendacion(titulo: str):
     recomendaciones = get_recommendations(titulo)
     return {"recomendaciones": recomendaciones}
+    """""
