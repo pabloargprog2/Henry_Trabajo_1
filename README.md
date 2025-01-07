@@ -4,6 +4,8 @@ Este proyecto tiene como objetivo cumplir con el primer trabajo practico individ
 
 
 Instalación y Requisitos
+
+
 Todo presente en el archivo: requirements.txt. 
 Pero principlamente es:
 
@@ -23,18 +25,30 @@ python-multipart
 Pasos de instalación:
 
 Clonar el repositorio: git clone https://github.com/pabloargprog2/Henry_Trabajo_1.git
+
+
 Crear un entorno virtual: python -m venv venv
-Activar el entorno virtual:
-Windows: venv\Scripts\activate
+
+Activar el entorno virtual: Windows: venv\Scripts\activate
+
+
 Instalar las dependencias: pip install -r requirements.txt
 
 Estructura del Proyecto
+
+
 limpieza y transformacion datos/: esta carpeta contiene los datasets orginales de creditos y peliculas, y todos los cambios que se le aplicaron para llegar a los datasets utilizados.
+
 dataset_actor_director.csv/: dataset utilizado para algunas funciones en FastApi.
+
 dataset_funciones_basicas.csv/: dataset utilizado para algunas funciones en FastApi.
+
 dataset_modelo.csv/: dataset utilizado para el modelo de ML del sistema de recomendacion de peliculas.
+
 dataset_final.csv/: dataset que contiene los tres anteriores.
+
 main.py/: archivo python que contiene todas las funciones, endpoints y el modelo de recomendacion de peliculas presente en la aplicacion desarollada en FastApi y Render.
+
 README.md: Documentación.
 
 Metodología
