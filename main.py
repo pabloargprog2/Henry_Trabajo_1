@@ -199,7 +199,7 @@ dataset['vote_average'] = pd.to_numeric(dataset['vote_average'], errors='coerce'
 dataset['vote_count'] = pd.to_numeric(dataset['vote_count'], errors='coerce')
 dataset['popularity'] = pd.to_numeric(dataset['popularity'], errors='coerce')
 
-#Convertir tipos de datos
+# Convertir tipos de datos
 dataset['vote_average'] = dataset['vote_average'].astype('float32')
 dataset['vote_count'] = dataset['vote_count'].astype('int32')
 dataset['popularity'] = dataset['popularity'].astype('float32')
@@ -214,10 +214,18 @@ filtered_movies = dataset[(dataset['vote_count'] >= vote_threshold) & (dataset['
 # Preprocesar la columna 'overview'
 filtered_movies['overview'] = filtered_movies['overview'].fillna('')
 
-# Combinar 'overview' y 'genre_names' para enriquecer las descripciones
-filtered_movies['genre_names'] = filtered_movies['genre_names'].fillna('[]').apply(lambda x: ' '.join(ast.literal_eval(x)))
-filtered_movies['combined_features'] = filtered_movies['overview'] + ' ' + filtered_movies['genre_names']
+# Función segura para evaluar listas en 'genre_names'
+def safe_literal_eval(x):
+    try:
+        return ' '.join(ast.literal_eval(x)) if isinstance(x, str) else ''
+    except (ValueError, SyntaxError):
+        return ''  # Devuelve una cadena vacía si no se puede evaluar
 
+# Convertir 'genre_names' a una lista de géneros
+filtered_movies['genre_names'] = filtered_movies['genre_names'].fillna('[]').apply(safe_literal_eval)
+
+# Combinar 'overview' y 'genre_names' para enriquecer las descripciones
+filtered_movies['combined_features'] = filtered_movies['overview'] + ' ' + filtered_movies['genre_names']
 # Crear matriz TF-IDF
 tfidf = TfidfVectorizer(stop_words='english')
 tfidf_matrix = tfidf.fit_transform(filtered_movies['combined_features'])
