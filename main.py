@@ -193,7 +193,7 @@ def get_director(nombre_director: str):
  
     
 #SISTEMA DE RECOMENDACION
-dataset = pd.read_csv("./dataset_modelo.csv")
+dataset = pd.read_csv("./dataset_modelo_con_features.csv")
 # Asegurarnos de que las columnas estén correctamente tipificadas
 dataset['vote_average'] = pd.to_numeric(dataset['vote_average'], errors='coerce')
 dataset['vote_count'] = pd.to_numeric(dataset['vote_count'], errors='coerce')
@@ -225,7 +225,7 @@ def safe_literal_eval(x):
 filtered_movies['genre_names'] = filtered_movies['genre_names'].fillna('[]').apply(safe_literal_eval)
 
 # Combinar 'overview' y 'genre_names' para enriquecer las descripciones
-filtered_movies['combined_features'] = filtered_movies['overview'] + ' ' + filtered_movies['genre_names']
+#filtered_movies['combined_features'] = filtered_movies['overview'] + ' ' + filtered_movies['genre_names']
 # Crear matriz TF-IDF
 tfidf = TfidfVectorizer(stop_words='english')
 tfidf_matrix = tfidf.fit_transform(filtered_movies['combined_features'])
